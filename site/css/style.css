@@ -1038,7 +1038,7 @@ header+section.box-custom-1 {
 		content: '';
 		display: block;
 		position: absolute;
-		background-image: url(../images/home-15-131x170.png);
+		/* background-image: url(../images/home-15-131x170.png); */
 		width: 131px;
 		height: 170px;
 	}
@@ -6136,7 +6136,7 @@ html.rd-navbar-fixed-linked header {
 
 
   .full-width-div {
-	height: 70px;
+	height: 100px;
 	width: 100%;
 	background-color: #f5f5f5; /* Optional: Add a background color to make it visible */
   }
@@ -6230,4 +6230,4 @@ button {
 	color: #fff;
    }
 
-  
+
