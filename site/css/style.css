@@ -6142,10 +6142,12 @@ html.rd-navbar-fixed-linked header {
   }
 
   .full-width-div1 {
-	height: 40px;
+	height: 25px;
 	width: 100%;
 	background-color: #ffffff; /* Optional: Add a background color to make it visible */
   }
+
+  
 
 
 button {
