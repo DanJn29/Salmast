@@ -6165,9 +6165,11 @@ button {
    }
    
    button.learn-more {
-	width: 12rem;
-	height: auto;
-   }
+	width: 13.5rem;
+    height: auto;
+}
+
+   
    
    button.learn-more .circle {
 	transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -6217,12 +6219,14 @@ button {
 	right: 0;
 	bottom: 0;
 	padding: 0.75rem 0;
-	margin: 0 0 0 1.85rem;
+	margin: 0 0 0 3.5rem;
 	color: #282936;
 	font-weight: 700;
 	line-height: 1.6;
 	text-align: center;
 	text-transform: uppercase;
+	white-space: nowrap; /* Prevent text from wrapping */
+
    }
    
    button:hover .circle {
@@ -6257,7 +6261,7 @@ button {
 	 border-radius: 4px;
    }
    .select-dropdown select {
-	 font-size: 1.4rem;
+	 font-size: 18px;
 	 font-weight: normal;
 	 max-width: 100%;
 	 padding: 9px 56px 9px 18px;

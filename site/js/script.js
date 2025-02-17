@@ -631,3 +631,400 @@
 		}
 	});
 }());
+
+
+//traslations
+const translations = {
+	en:{
+		home_text: "Home",
+		about1: "About",
+		portfolio1: "Portfolio",
+		contacts1: "Contacts",
+		title: "Salmast - quality proven by time",
+		description: "Salmast Furniture, founded in 1991, was one of the first in Armenia to offer people the opportunity to order luxurious custom-branded furniture.",
+        since: "Since 1991",
+		salmast_furniture: "Salmast Furniture",
+		why: "Why choose us",
+		besides: "Besides great interior design, there are lots of reasons to choose Salmast. Here are some of the most popular ones.",
+		professional_team: "Professional Team",
+		our_team: "Our team includes only the best decorators and interior designers in the industry.",
+		unusual: "Unusual Ideas",
+		our_designers: "Our designers generate various yet always original ideas that will surely fit your needs.",
+		made: "Made with Respect",
+		all_our_work: "All our work is built around respect to our clients, great service, and creativity.",
+		send_request: "Send request",
+		our_portfolio: "Our Portfolio",
+		all_our_projects: "All our projects are unique and designed to last. Take a look at our recent works to find it out for yourself.",
+		learn_more: "Learn More",
+		book: "Book a free designer consultation",
+		a_great_way: "A great way to your new interior",
+		discuss: "Discuss every aspect of your interior with one of our designers",
+		let_us: "Let us plan and calculate every part of your new interior",
+		you_can: "You can also ask questions and suggest any project changes",
+		name: "Name",
+		email: "E-mail",
+		button_send: "Send request",
+		call_us: "or call us now",
+		aram: "Anahit Grigoryan",
+		client1: "Regular client",
+		review1: "The Salmast team exceeded all my expectations! They created not only a beautiful but also a functional and comfortable interior for my home. Their attention to detail and quality is flawless.",
+		karen: "Karen Martirosyan",
+		client2: "Regular client",
+		review2: "I have trusted Salmast for many years. Their professionalism, high-quality materials, and personalized approach are truly impressive. Every time, the result is even better than I expected!",
+		tony: "Tony Montana",
+		client3: "Regular client",
+		review3: "Salmast is truly a leader in its field! I ordered furniture for my office, and it turned out to be not only stylish but also durable and professionally crafted. Thank you for your dedication to excellence!",
+		learn_more1: "Learn More",
+		our_address: "Our Address",
+		address: "22 Rubinyants St, Yerevan 0069",
+		working_hours: "Working Hours",
+		sun: "Sun: 12:00-19:00",
+		mon: "Mon-Sat: 10:30-19:00",
+		socials: "Socials",
+		phone: "phone",
+		email1: "Email",
+		salmast1: "Salmast",
+		all_rights: ". All Rights Reserved. Designed by DanJn",
+		free: "Free consultation",
+	},
+	am:{
+		home_text: "Գլխավոր",
+		about1: "Մեր մասին",
+		portfolio1: "Պորտֆոլիո",
+		contacts1: "Կապ",
+		title: "Սալմաստ՝ ժամանակով փորձված որակ",
+		description: "Սալմաստ Կահույքը, որը հիմնադրվել է 1991 թվականին, առաջիններից էր Հայաստանում, որը մարդկանց հնարավորություն տվեց պատվիրել շքեղ անհատական բրենդային կահույք։",
+        since: "Սկսած 1991 թվականից",
+		salmast_furniture: "Սալմաստ Կահույք",
+		why: "Ինչու ընտրել մեզ",
+		besides: "Բացի հրաշալի ինտերիերի դիզայնից, շատ պատճառներ կան ընտրելու մեզ։ Ահա դրանցից ամենահայտնիները։",
+		professional_team: "Պրոֆեսիոնալ թիմ",
+		our_team: "Մեր թիմը ներառում է միայն լավագույն դեկորատորներն ու ինտերիերի դիզայներները։",
+		unusual: "Անսովոր գաղափարներ",
+		our_designers: "Մեր դիզայներները մշակում են տարբեր, բայց միշտ օրիգինալ գաղափարներ, որոնք հարմար կլինեն ձեր կարիքներին։",
+		made: "Ստեղծված հարգանքով",
+		all_our_work: "Մեր բոլոր աշխատանքները կառուցված են հաճախորդների հարգանքի, գերազանց սպասարկման և ստեղծագործական մոտեցման վրա։",
+		send_request: "Ուղարկել հարցում",
+		our_portfolio: "Մեր պորտֆոլիոն",
+		all_our_projects: "Մեր բոլոր նախագծերը եզակի են և նախատեսված են երկար ծառայելու։ Դիտեք մեր վերջին աշխատանքները։",
+		learn_more: "Տեսնել ավելին",
+		book: "Գրանցվեք անվճար դիզայների խորհրդատվության",
+		a_great_way: "Հիանալի միջոց ձեր նոր ինտերիերի համար",
+		discuss: "Քննարկեք ձեր ինտերիերի բոլոր ասպեկտները մեր դիզայներներից մեկի հետ",
+		let_us: "Թողեք մեզ պլանավորել և հաշվարկել ձեր նոր ինտերիերի բոլոր մասերը",
+		you_can: "Դուք կարող եք նաև տալ հարցեր և առաջարկել փոփոխություններ",
+		name: "Անուն",
+		email: "Էլ․ փոստ",
+		button_send: "Ուղարկել հարցում",
+		call_us: "կամ զանգահարեք մեզ հիմա",
+		aram: "Անահիտ Գրիգորյան",
+		client1: "Սովորական հաճախորդ",
+		review1: "Կահույքի թիմը գերազանցեց իմ սպասելիքները: Նրանք ստեղծեցին ոչ միայն գեղեցիկ, այլև ֆունկցիոնալ և հարմարավետ միջավայր իմ տան համար: Նրանց աշխատանքը կատարյալ է մանրամասների նկատմամբ ուշադրության և որակի առումով։",
+		karen: "Կարեն Մարտիրոսյան",
+		client2: "Սովորական հաճախորդ",
+		review2: "Ես արդեն երկար տարիներ վստահում եմ Salmast-ին: Նրանց արհեստավարժությունը, նյութերի բարձր որակը և անհատական մոտեցումը պարզապես ապշեցնում են։ Ամեն անգամ արդյունքն ավելի լավն է, քան սպասում էի։",
+		tony: "Տոնի Մոնտանա",
+		client3: "Սովորական հաճախորդ",
+		review3: "Salmast-ն իրոք իր ոլորտի առաջատարն է: Ես պատվիրել եմ կահույք իմ գրասենյակի համար, և այն ոչ միայն գեղեցիկ է, այլև դիմացկուն և պրոֆեսիոնալ ոճով: Շնորհակալ եմ ձեր նվիրված աշխատանքի համար!",
+		learn_more1: "Տեսնել ավելին",
+		our_address: "Մեր հասցեն",
+		address: "Ռուբինյանց 22, Երևան 0069",
+		working_hours: "Աշխատանքային ժամեր",
+		sun: "Կիրակի: 12:00-19:00",
+		mon: "Երկ-Շբթ: 10:30-19:00",
+		socials: "Սոց․ ցանցեր",
+		phone: "Հեռախոսահամար",
+		email1: "Էլ. փոստ",
+		salmast1: "Salmast",
+		all_rights: ". Բոլոր իրավունքները պաշտպանված են։ Նախագծված է DanJn-ի կողմից",
+		free: "Անվճար խորհրդատվություն",
+
+	},
+	ru:{
+		home_text: "Главная",
+		about1: "О нас",
+		portfolio1: "Портфолио",
+		contacts1: "Контакты",
+		title: "Салмаст – качество, проверенное временем",
+		description: "Салмаст, основанный в 1991 году, был одним из первых в Армении, кто предоставил людям возможность заказывать роскошную индивидуальную брендированную мебель.",
+        since: "С 1991 года",
+		salmast_furniture: "Салмаст",
+		why: "Почему выбрать нас",
+		besides: "Помимо отличного дизайна интерьера, есть множество причин выбрать нас. Вот некоторые из самых популярных.",
+		professional_team: "Профессиональная команда",
+		our_team: "В нашей команде только лучшие декораторы и дизайнеры интерьера.",
+		unusual: "Необычные идеи",
+		our_designers: "Наши дизайнеры создают различные, но всегда оригинальные идеи, которые точно подойдут под ваши нужды.",
+		made: "Создано с уважением",
+		all_our_work: "Вся наша работа основана на уважении к клиентам, отличном сервисе и креативности.",
+		send_request: "Отправить запрос",
+		our_portfolio: "Наше портфолио",
+		all_our_projects: "Все наши проекты уникальны и рассчитаны на долговечность. Посмотрите наши последние работы.",
+		learn_more: "Увидеть больше",
+		book: "Запишитесь на бесплатную консультацию дизайнера",
+		a_great_way: "Отличный способ создать новый интерьер",
+		discuss: "Обсудите все аспекты вашего интерьера с нашим дизайнером",
+		let_us: "Позвольте нам спланировать и рассчитать каждую деталь вашего нового интерьера",
+		you_can: "Вы также можете задать вопросы и предложить изменения в проекте",
+		name: "Имя",
+		email: "Эл. почта",
+		button_send: "Отправить запрос",
+		call_us: "или позвоните нам сейчас",
+		aram: "Анаит Григорян",
+		client1: "Обычный клиент",
+		review1: "Команда Salmast превзошла все мои ожидания! Они создали не только красивый, но и функциональный и удобный интерьер для моего дома. Их внимание к деталям и качеству безупречно.",
+		karen: "Карен Мартиросян",
+		client2: "Обычный клиент",
+		review2: "Я уже много лет доверяю Salmast. Их профессионализм, высокое качество материалов и индивидуальный подход просто поражают. Каждый раз результат оказывается лучше, чем я ожидал!",
+		tony: "Тони Монтана",
+		client3: "Обычный клиент",
+		review3: "Salmast действительно лидер в своей сфере! Я заказывал мебель для офиса, и она оказалась не только стильной, но и очень прочной и профессионально выполненной. Спасибо за вашу преданность работе!",
+		learn_more1: "Увидеть больше",
+		our_address: "Наш адрес",
+		address: "ул. Рубинянца 22, Ереван 0069",
+		working_hours: "Часы работы",
+		sun: "Вс: 12:00-19:00",
+		mon: "Пн-Сб: 10:30-19:00",
+		socials: "Социальные сети",
+		phone: "Телефон",
+		email1: "Эл. почта",
+		salmast1: "Salmast",
+		all_rights: ". Все права защищены. Разработано DanJn",
+		free: "Бесплатная консультация",
+
+	}
+}
+
+const languageSelector = document.querySelector("languageSelector1");
+let home_text = document.getElementById("home_text");
+let about1 = document.getElementById("about1");
+let portfolio1 = document.getElementById("portfolio1");
+let contacts1 = document.getElementById("contacts1");
+let title = document.getElementById("title");
+let description = document.getElementById("description");
+let since = document.getElementById("since");
+let salmast_furniture = document.getElementById("salmast_furniture");
+let why = document.getElementById("why");
+let besides = document.getElementById("besides");
+let professional_team = document.getElementById("professional_team");
+let our_team = document.getElementById("our_team");
+let unusual = document.getElementById("unusual");
+let our_designers = document.getElementById("our_designers");
+let made = document.getElementById("made");
+let all_our_work = document.getElementById("all_our_work");
+let send_request = document.getElementById("send_request");
+let our_portfolio = document.getElementById("our_portfolio");
+let all_our_projects = document.getElementById("all_our_projects");
+let learn_more = document.getElementById("learn_more");
+let book = document.getElementById("book");
+let a_great_way = document.getElementById("a_great_way");
+let discuss = document.getElementById("discuss");
+let let_us = document.getElementById("let_us");
+let you_can = document.getElementById("you_can");
+let name = document.getElementById("name");
+let email = document.getElementById("email");
+let button_send = document.getElementById("button_send");
+let call_us = document.getElementById("call_us");
+let aram = document.getElementById("aram");
+let client1 = document.getElementById("client1");
+let review1 = document.getElementById("review1");
+let karen = document.getElementById("karen");
+let client2 = document.getElementById("client2");
+let review2 = document.getElementById("review2");
+let tony = document.getElementById("tony");
+let client3 = document.getElementById("client3");
+let review3 = document.getElementById("review3");
+let learn_more1 = document.getElementById("learn_more1");
+let our_address = document.getElementById("our_address");
+let address = document.getElementById("address");
+let working_hours = document.getElementById("working_hours");
+let sun = document.getElementById("sun");
+let mon = document.getElementById("mon");
+let socials = document.getElementById("socials");
+let phone = document.getElementById("phone");
+let email1 = document.getElementById("email1");
+let salmast1 = document.getElementById("salmast1");
+let all_rights = document.getElementById("all_rights");
+let free = document.getElementById("free");
+
+
+
+const setLanguage = (language) => {
+	if(language == "en"){
+		home_text.innerText = translations.en.home_text;
+        about1.innerText = translations.en.about1;
+        portfolio1.innerText = translations.en.portfolio1;
+        contacts1.innerText = translations.en.contacts1;
+        title.innerText = translations.en.title;
+        description.innerText = translations.en.description;
+        since.innerText = translations.en.since;
+        salmast_furniture.innerText = translations.en.salmast_furniture;
+        why.innerText = translations.en.why;
+        besides.innerText = translations.en.besides;
+        professional_team.innerText = translations.en.professional_team;
+        our_team.innerText = translations.en.our_team;
+        unusual.innerText = translations.en.unusual;
+        our_designers.innerText = translations.en.our_designers;
+        made.innerText = translations.en.made;
+        all_our_work.innerText = translations.en.all_our_work;
+        send_request.innerText = translations.en.send_request;
+        our_portfolio.innerText = translations.en.our_portfolio;
+        all_our_projects.innerText = translations.en.all_our_projects;
+        learn_more.innerText = translations.en.learn_more;
+        book.innerText = translations.en.book;
+        a_great_way.innerText = translations.en.a_great_way;
+        discuss.innerText = translations.en.discuss;
+        let_us.innerText = translations.en.let_us;
+        you_can.innerText = translations.en.you_can;
+        name.innerText = translations.en.name;
+        email.innerText = translations.en.email;
+        button_send.innerText = translations.en.button_send;
+        call_us.innerText = translations.en.call_us;
+        aram.innerText = translations.en.aram;
+        client1.innerText = translations.en.client1;
+        review1.innerText = translations.en.review1;
+        karen.innerText = translations.en.karen;
+        client2.innerText = translations.en.client2;
+        review2.innerText = translations.en.review2;
+        tony.innerText = translations.en.tony;
+        client3.innerText = translations.en.client3;
+        review3.innerText = translations.en.review3;
+        learn_more1.innerText = translations.en.learn_more1;
+        our_address.innerText = translations.en.our_address;
+        address.innerText = translations.en.address;
+        working_hours.innerText = translations.en.working_hours;
+        sun.innerText = translations.en.sun;
+        mon.innerText = translations.en.mon;
+        socials.innerText = translations.en.socials;
+        phone.innerText = translations.en.phone;
+        email1.innerText = translations.en.email1;
+        salmast1.innerText = translations.en.salmast1;
+        all_rights.innerText = translations.en.all_rights;
+		free.innerText = translations.en.free;
+		console.log("en");
+ 	}
+	else if (language == "am"){
+		home_text.innerText = translations.am.home_text;
+        about1.innerText = translations.am.about1;
+        portfolio1.innerText = translations.am.portfolio1;
+        contacts1.innerText = translations.am.contacts1;
+title.innerText = translations.am.title;
+description.innerText = translations.am.description;
+since.innerText = translations.am.since;
+salmast_furniture.innerText = translations.am.salmast_furniture;
+why.innerText = translations.am.why;
+besides.innerText = translations.am.besides;
+professional_team.innerText = translations.am.professional_team;
+our_team.innerText = translations.am.our_team;
+unusual.innerText = translations.am.unusual;
+our_designers.innerText = translations.am.our_designers;
+made.innerText = translations.am.made;
+all_our_work.innerText = translations.am.all_our_work;
+send_request.innerText = translations.am.send_request;
+our_portfolio.innerText = translations.am.our_portfolio;
+all_our_projects.innerText = translations.am.all_our_projects;
+learn_more.innerText = translations.am.learn_more;
+book.innerText = translations.am.book;
+a_great_way.innerText = translations.am.a_great_way;
+discuss.innerText = translations.am.discuss;
+let_us.innerText = translations.am.let_us;
+you_can.innerText = translations.am.you_can;
+name.innerText = translations.am.name;
+email.innerText = translations.am.email;
+button_send.innerText = translations.am.button_send;
+call_us.innerText = translations.am.call_us;
+aram.innerText = translations.am.aram;
+client1.innerText = translations.am.client1;
+review1.innerText = translations.am.review1;
+karen.innerText = translations.am.karen;
+client2.innerText = translations.am.client2;
+review2.innerText = translations.am.review2;
+tony.innerText = translations.am.tony;
+client3.innerText = translations.am.client3;
+review3.innerText = translations.am.review3;
+learn_more1.innerText = translations.am.learn_more1;
+our_address.innerText = translations.am.our_address;
+address.innerText = translations.am.address;
+working_hours.innerText = translations.am.working_hours;
+sun.innerText = translations.am.sun;
+mon.innerText = translations.am.mon;
+socials.innerText = translations.am.socials;
+phone.innerText = translations.am.phone;
+email1.innerText = translations.am.email1;
+salmast1.innerText = translations.am.salmast1;
+all_rights.innerText = translations.am.all_rights;
+free.innerText = translations.am.free;
+
+		console.log("am");
+	}
+	else if (language == "ru"){
+		home_text.innerText = translations.ru.home_text;
+		about1.innerText = translations.ru.about1;
+		portfolio1.innerText = translations.ru.portfolio1;
+		contacts1.innerText = translations.ru.contacts1;
+		title.innerText = translations.ru.title;
+		description.innerText = translations.ru.description;
+		since.innerText = translations.ru.since;
+		salmast_furniture.innerText = translations.ru.salmast_furniture;
+		why.innerText = translations.ru.why;
+		besides.innerText = translations.ru.besides;
+		professional_team.innerText = translations.ru.professional_team;
+		our_team.innerText = translations.ru.our_team;
+		unusual.innerText = translations.ru.unusual;
+		our_designers.innerText = translations.ru.our_designers;
+		made.innerText = translations.ru.made;
+		all_our_work.innerText = translations.ru.all_our_work;
+		send_request.innerText = translations.ru.send_request;
+		our_portfolio.innerText = translations.ru.our_portfolio;
+		all_our_projects.innerText = translations.ru.all_our_projects;
+		learn_more.innerText = translations.ru.learn_more;
+		book.innerText = translations.ru.book;
+		a_great_way.innerText = translations.ru.a_great_way;
+		discuss.innerText = translations.ru.discuss;
+		let_us.innerText = translations.ru.let_us;
+		you_can.innerText = translations.ru.you_can;
+		name.innerText = translations.ru.name;
+		email.innerText = translations.ru.email;
+		button_send.innerText = translations.ru.button_send;
+		call_us.innerText = translations.ru.call_us;
+		aram.innerText = translations.ru.aram;
+		client1.innerText = translations.ru.client1;
+		review1.innerText = translations.ru.review1;
+		karen.innerText = translations.ru.karen;
+		client2.innerText = translations.ru.client2;
+		review2.innerText = translations.ru.review2;
+		tony.innerText = translations.ru.tony;
+		client3.innerText = translations.ru.client3;
+		review3.innerText = translations.ru.review3;
+		learn_more1.innerText = translations.ru.learn_more1;
+		our_address.innerText = translations.ru.our_address;
+		address.innerText = translations.ru.address;
+		working_hours.innerText = translations.ru.working_hours;
+		sun.innerText = translations.ru.sun;
+		mon.innerText = translations.ru.mon;
+		socials.innerText = translations.ru.socials;
+		phone.innerText = translations.ru.phone;
+		email1.innerText = translations.ru.email1;
+		salmast1.innerText = translations.ru.salmast1;
+		all_rights.innerText = translations.ru.all_rights;
+		free.innerText = translations.ru.free;
+
+		console.log("ru");
+}
+}
+
+// languageSelector.addEventListener("change", (event) =>{
+// 	setLanguage(event.target.value);
+// })
+
+document.addEventListener("DOMContentLoaded", function() {
+	let languageSelector = document.getElementById("languageSelector1");
+  
+	if (languageSelector) {
+	  languageSelector.addEventListener("change", (event) => {
+		setLanguage(event.target.value);
+	  });
+	} else {
+	  console.error("Element with ID 'languageSelector1' not found.");
+	}
+});
