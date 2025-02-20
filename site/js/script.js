@@ -719,7 +719,7 @@ const translations = {
 		call_us: "կամ զանգահարեք մեզ հիմա",
 		aram: "Հայկ Գրիգորյան",
 		client1: "հաճախորդ",
-		review1: "Կահույքի թիմը գերազանցեց իմ սպասելիքները: Նրանք ստեղծեցին ոչ միայն գեղեցիկ, այլև ֆունկցիոնալ և հարմարավետ միջավայր իմ տան համար: Նրանց աշխատանքը կատարյալ է մանրամասների նկատմամբ ուշադրության և որակի առումով։",
+		review1: " Սալմաստ Կահույքի թիմը գերազանցեց իմ սպասելիքները: Նրանք ստեղծեցին ոչ միայն գեղեցիկ, այլև ֆունկցիոնալ և հարմարավետ միջավայր իմ տան համար: Նրանց աշխատանքը կատարյալ է մանրամասների նկատմամբ ուշադրության և որակի առումով։",
 		karen: "Կարեն Մարտիրոսյան",
 		client2: "հաճախորդ",
 		review2: "Ես արդեն երկար տարիներ վստահում եմ Սալմաստին: Նրանց արհեստավարժությունը, նյութերի բարձր որակը և անհատական մոտեցումը պարզապես ապշեցնում են։ Ամեն անգամ արդյունքն ավելի լավն է, քան սպասում էի։",
@@ -1027,4 +1027,40 @@ document.addEventListener("DOMContentLoaded", function() {
 	} else {
 	  console.error("Element with ID 'languageSelector1' not found.");
 	}
+});
+
+
+//Firebase database
+// Import Firebase configuration and functions
+import { database, ref, set } from './firebaseConfig';
+
+document.addEventListener("DOMContentLoaded", function() {
+  let nameInput = document.getElementById("name");
+  let emailInput = document.getElementById("email");
+  let submitButton = document.getElementById("button_send");
+
+  
+
+  if (submitButton) {
+    submitButton.addEventListener("click", function() {
+      let name = nameInput.value;
+      let email = emailInput.value;
+
+      if (name && email) {
+        // Store data in Firebase Realtime Database
+        set(ref(database, 'users/' + name), {
+          username: name,
+          email: email
+        }).then(() => {
+          console.log("Data saved successfully!");
+        }).catch((error) => {
+          console.error("Error saving data: ", error);
+        });
+      } else {
+        console.error("Name and email are required.");
+      }
+    });
+  } else {
+    console.error("Element with ID 'button_send' not found.");
+  }
 });
