@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 $formConfigFile = file_get_contents("rd-mailform.config.json");
 $formConfig = json_decode($formConfigFile, true);
@@ -19,7 +21,6 @@ try {
     function getRemoteIPAddress() {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             return $_SERVER['HTTP_CLIENT_IP'];
-
         } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             return $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
@@ -47,7 +48,7 @@ try {
                 $subject = 'A message from your site visitor';
                 break;
         }
-    }else{
+    } else {
         die('MF004');
     }
 
@@ -65,7 +66,6 @@ try {
             $template);
     }
 
-    // In a regular expression, the character \v is used as "anything", since this character is rare
     preg_match("/(<!-- #\{BeginInfo\} -->)([^\v]*?)(<!-- #\{EndInfo\} -->)/", $template, $matches, PREG_OFFSET_CAPTURE);
     foreach ($_POST as $key => $value) {
         if ($key != "counter" && $key != "email" && $key != "message" && $key != "form-type" && $key != "g-recaptcha-response" && !empty($value)){
@@ -85,48 +85,27 @@ try {
 
     $mail = new PHPMailer();
 
-
     if ($formConfig['useSmtp']) {
-        //Tell PHPMailer to use SMTP
         $mail->isSMTP();
-
-        //Enable SMTP debugging
-        // 0 = off (for production use)
-        // 1 = client messages
-        // 2 = client and server messages
         $mail->SMTPDebug = 0;
-
         $mail->Debugoutput = 'html';
-
-        // Set the hostname of the mail server
         $mail->Host = $formConfig['host'];
-
-        // Set the SMTP port number - likely to be 25, 465 or 587
         $mail->Port = $formConfig['port'];
-
-        // Whether to use SMTP authentication
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "ssl";
-
-        // Username to use for SMTP authentication
         $mail->Username = $formConfig['username'];
-
-        // Password to use for SMTP authentication
         $mail->Password = $formConfig['password'];
     }
 
     $mail->From = $_POST['email'];
 
-    # Attach file
-    if (isset($_FILES['file']) &&
-        $_FILES['file']['error'] == UPLOAD_ERR_OK) {
-        $mail->AddAttachment($_FILES['file']['tmp_name'],
-            $_FILES['file']['name']);
+    if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
+        $mail->AddAttachment($_FILES['file']['tmp_name'], $_FILES['file']['name']);
     }
 
     if (isset($_POST['name'])){
         $mail->FromName = $_POST['name'];
-    }else{
+    } else {
         $mail->FromName = "Site Visitor";
     }
 
@@ -138,6 +117,29 @@ try {
     $mail->Subject = $subject;
     $mail->MsgHTML($template);
     $mail->send();
+
+    // Function to send data to Firebase
+    function sendToFirebase($name, $email) {
+        $url = 'https://salmast-9bec7-default-rtdb.firebaseio.com/users/' . urlencode($name) . '.json';
+        $data = json_encode(['username' => $name, 'email' => $email]);
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+
+        $response = curl_exec($ch);
+        if ($response === false) {
+            echo 'Error: ' . curl_error($ch);
+        } else {
+            echo 'Data saved successfully!';
+        }
+        curl_close($ch);
+    }
+
+    // Send data to Firebase
+    sendToFirebase($_POST['name'], $_POST['email']);
 
     die('MF000');
 } catch (phpmailerException $e) {

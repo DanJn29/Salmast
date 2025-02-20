@@ -1031,43 +1031,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //Firebase database
-// Import Firebase configuration and functions
-import { database, ref, set } from './firebaseConfig.js';
-
-document.addEventListener("DOMContentLoaded", function() {
-  let languageSelector = document.getElementById("languageSelector1");
-  let nameInput = document.getElementById("name");
-  let emailInput = document.getElementById("email");
-  let submitButton = document.getElementById("button_send");
-
-  if (languageSelector) {
-    languageSelector.addEventListener("change", (event) => {
-      setLanguage(event.target.value);
-    });
-  } else {
-    console.error("Element with ID 'languageSelector1' not found.");
-  }
-
-  if (submitButton) {
-    submitButton.addEventListener("click", function() {
-      let name = nameInput.value;
-      let email = emailInput.value;
-
-      if (name && email) {
-        // Store data in Firebase Realtime Database
-        set(ref(database, 'users/' + name), {
-          username: name,
-          email: email
-        }).then(() => {
-          console.log("Data saved successfully!");
-        }).catch((error) => {
-          console.error("Error saving data: ", error);
-        });
-      } else {
-        console.error("Name and email are required.");
-      }
-    });
-  } else {
-    console.error("Element with ID 'button_send' not found.");
-  }
-});
+ddocument.addEventListener("DOMContentLoaded", function() {
+	let form = document.querySelector(".rd-form");
+	let nameInput = document.getElementById("contact-2-name");
+	let emailInput = document.getElementById("contact-2-email");
+	let submitButton = document.getElementById("button_send");
+  
+	if (form) {
+	  form.addEventListener("submit", function(event) {
+		event.preventDefault(); // Prevent the default form submission
+  
+		let name = nameInput.value;
+		let email = emailInput.value;
+  
+		if (name && email) {
+		  // Store data in Firebase Realtime Database
+		  firebase.database().ref('users/' + name).set({
+			username: name,
+			email: email
+		  }).then(() => {
+			console.log("Data saved successfully!");
+		  }).catch((error) => {
+			console.error("Error saving data: ", error);
+		  });
+		} else {
+		  console.error("Name and email are required.");
+		}
+	  });
+	} else {
+	  console.error("Form not found.");
+	}
+  });
