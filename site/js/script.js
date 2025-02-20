@@ -1032,14 +1032,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Firebase database
 // Import Firebase configuration and functions
-import { database, ref, set } from './firebaseConfig';
+import { database, ref, set } from './firebaseConfig.js';
 
 document.addEventListener("DOMContentLoaded", function() {
+  let languageSelector = document.getElementById("languageSelector1");
   let nameInput = document.getElementById("name");
   let emailInput = document.getElementById("email");
   let submitButton = document.getElementById("button_send");
 
-  
+  if (languageSelector) {
+    languageSelector.addEventListener("change", (event) => {
+      setLanguage(event.target.value);
+    });
+  } else {
+    console.error("Element with ID 'languageSelector1' not found.");
+  }
 
   if (submitButton) {
     submitButton.addEventListener("click", function() {
