@@ -1030,35 +1030,56 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-//Firebase database
-ddocument.addEventListener("DOMContentLoaded", function() {
-	let form = document.querySelector(".rd-form");
-	let nameInput = document.getElementById("contact-2-name");
-	let emailInput = document.getElementById("contact-2-email");
-	let submitButton = document.getElementById("button_send");
-  
-	if (form) {
-	  form.addEventListener("submit", function(event) {
-		event.preventDefault(); // Prevent the default form submission
-  
-		let name = nameInput.value;
-		let email = emailInput.value;
-  
-		if (name && email) {
-		  // Store data in Firebase Realtime Database
-		  firebase.database().ref('users/' + name).set({
-			username: name,
-			email: email
-		  }).then(() => {
-			console.log("Data saved successfully!");
-		  }).catch((error) => {
-			console.error("Error saving data: ", error);
-		  });
-		} else {
-		  console.error("Name and email are required.");
-		}
-	  });
-	} else {
-	  console.error("Form not found.");
-	}
-  });
+document.addEventListener("DOMContentLoaded", function() {
+    let form = document.querySelector(".rd-form");
+    let nameInput = document.getElementById("contact-2-name");
+    let emailInput = document.getElementById("contact-2-email");
+    let submitButton = document.getElementById("button_send");
+    let snackbar = document.getElementById("form-output-global");
+
+    // Firebase database initialization
+    const database = firebase.database(); 
+
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            let name = nameInput.value;
+            let email = emailInput.value;
+
+            if (name && email) {
+                // Show the snackbar message
+                snackbar.innerHTML = '<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>';
+                snackbar.classList.add("active");
+
+                // Store data in Firebase Realtime Database
+                database.ref('users/' + name).set({
+                    username: name,
+                    email: email
+                }).then(() => {
+                    console.log("Data saved successfully!");
+
+                    // Update the snackbar message to "Successfully sent" with a green checkmark
+                    snackbar.innerHTML = '<p><span class="icon text-middle fa fa-check icon-xxs" style="color: green;"></span><span>Successfully sent</span></p>';
+
+                    // Remove the snackbar message after 5 seconds
+                    setTimeout(() => {
+                        snackbar.classList.remove("active");
+                    }, 3000);
+                }).catch((error) => {
+                    console.error("Error saving data: ", error);
+                    alert("Error saving data: " + error);
+
+                    // Hide the snackbar message
+                    snackbar.classList.remove("active");
+                });
+            } else {
+                console.error("Name and email are required.");
+                alert("Please enter your name and email.");
+            }
+        });
+    } else {
+        console.error("Form not found.");
+        alert("Form not found.");
+    }
+});
