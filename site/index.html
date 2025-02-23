@@ -492,6 +492,13 @@
                         <input class="form-input" id="contact-2-email" type="email" name="email" data-constraints="@Email @Required">
                         <label class="form-label" id="email" for="contact-2-email">E-mail</label>
                       </div>
+
+                       <div class="form-wrap">
+                        <input class="form-input" id="contact-2-phone" type="tel" name="phone" data-constraints="@Required" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                        <label class="form-label" id="phone" for="contact-2-phone">Phone</label>
+                      </div>
+
+
                       <div class="form-button">
                         <button class="button button-primary button-shadow" id="button_send" type="submit">Send request</button>
                       </div>
@@ -546,10 +553,10 @@
                 </div>
                 <div class="quote-modern">
                   <div class="quote-modern-header">
-                    <div class="quote-classic-avatar"><img src="images/tonny.jpeg" alt="" width="100" height="100"/>
+                    <div class="quote-classic-avatar"><img src="images/avatar.jpeg" alt="" width="100" height="100"/>
                     </div>
                     <div class="quote-classic-description">
-                      <h4 class="quote-classic-name" id="tony">Tony Montana</h4>
+                      <h4 class="quote-classic-name" id="tony">Armenak Sargsyan</h4>
                       <p class="quote-classic-position" id="client3">Customer</p>
                     </div>
                   </div>

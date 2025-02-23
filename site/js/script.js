@@ -671,7 +671,7 @@ const translations = {
 		karen: "Karen Martirosyan",
 		client2: "Customer",
 		review2: "I have trusted Salmast for many years. Their professionalism, high-quality materials, and personalized approach are truly impressive. Every time, the result is even better than I expected!",
-		tony: "Tony Montana",
+		tony: "Armenak Sargsyan",
 		client3: "Customer",
 		review3: "Salmast is truly a leader in its field! I ordered furniture for my office, and it turned out to be not only stylish but also durable and professionally crafted. Thank you for your dedication to excellence!",
 		learn_more1: "Watch More",
@@ -681,11 +681,15 @@ const translations = {
 		sun: "Sun: 12:00-19:00",
 		mon: "Mon-Sat: 10:30-19:00",
 		socials: "Socials",
-		phone: "phone",
+		phone: "Phone",
 		email1: "Email",
 		salmast1: "Salmast",
 		all_rights: ". All Rights Reserved. Designed by DanJn",
 		free: "Free consultation",
+		sending: "Sending",
+        successfullySent: "Successfully sent",
+        errorSavingData: "Error saving data",
+        pleaseEnterDetails: "Please enter your details"
 	},
 	am:{
 		home_text: "Գլխավոր",
@@ -723,7 +727,7 @@ const translations = {
 		karen: "Կարեն Մարտիրոսյան",
 		client2: "հաճախորդ",
 		review2: "Ես արդեն երկար տարիներ վստահում եմ Սալմաստին: Նրանց արհեստավարժությունը, նյութերի բարձր որակը և անհատական մոտեցումը պարզապես ապշեցնում են։ Ամեն անգամ արդյունքն ավելի լավն է, քան սպասում էի։",
-		tony: "Տոնի Մոնտանա",
+		tony: "Արմենակ Սարգսյան",
 		client3: "հաճախորդ",
 		review3: "Սալմաստն իրոք իր ոլորտի առաջատարն է: Ես պատվիրել եմ կահույք իմ գրասենյակի համար, և այն ոչ միայն գեղեցիկ է, այլև դիմացկուն և պրոֆեսիոնալ ոճով: Շնորհակալ եմ ձեր նվիրված աշխատանքի համար!",
 		learn_more1: "Տեսնել ավելին",
@@ -738,6 +742,10 @@ const translations = {
 		salmast1: "Salmast",
 		all_rights: ". Բոլոր իրավունքները պաշտպանված են։ Նախագծված է DanJn-ի կողմից",
 		free: "Անվճար խորհրդատվություն",
+		sending: "Ուղարկում",
+        successfullySent: "Հաջողությամբ ուղարկված է",
+        errorSavingData: "Տվյալների պահպանման սխալ",
+        pleaseEnterDetails: "Խնդրում ենք մուտքագրել ձեր տվյալները"
 
 	},
 	ru:{
@@ -776,7 +784,7 @@ const translations = {
 		karen: "Карен Мартиросян",
 		client2: "Клиент",
 		review2: "Я уже много лет доверяю Салмаст. Их профессионализм, высокое качество материалов и индивидуальный подход просто поражают. Каждый раз результат оказывается лучше, чем я ожидал!",
-		tony: "Тони Монтана",
+		tony: "Арменак Саргсян",
 		client3: "Клиент",
 		review3: "Салмаст действительно лидер в своей сфере! Я заказывал мебель для офиса, и она оказалась не только стильной, но и очень прочной и профессионально выполненной. Спасибо за вашу преданность работе!",
 		learn_more1: "Увидеть больше",
@@ -791,6 +799,10 @@ const translations = {
 		salmast1: "Salmast",
 		all_rights: ". Все права защищены. Разработано DanJn",
 		free: "Бесплатная консультация",
+		sending: "Отправка",
+        successfullySent: "Успешно отправлено",
+        errorSavingData: "Ошибка сохранения данных",
+        pleaseEnterDetails: "Пожалуйста, введите ваши данные"
 
 	}
 }
@@ -1033,53 +1045,98 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     let form = document.querySelector(".rd-form");
     let nameInput = document.getElementById("contact-2-name");
-    let emailInput = document.getElementById("contact-2-email");
+	let emailInput = document.getElementById("contact-2-email");
+    let phoneInput = document.getElementById("contact-2-phone");
     let submitButton = document.getElementById("button_send");
     let snackbar = document.getElementById("form-output-global");
 
     // Firebase database initialization
     const database = firebase.database(); 
 
+    // Get the user's selected language (default to 'en')
+    let userLang = 'en'; // Default language
+    const languageSelector = document.getElementById("languageSelector1");
+    if (languageSelector) {
+        userLang = languageSelector.value;
+        languageSelector.addEventListener("change", (event) => {
+            userLang = event.target.value;
+            setLanguage(userLang);
+        });
+    } else {
+        console.error("Element with ID 'languageSelector1' not found.");
+    }
+
     if (form) {
         form.addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the default form submission
 
             let name = nameInput.value;
-            let email = emailInput.value;
+			let email = emailInput.value;
+            let phone = phoneInput.value;
 
-            if (name && email) {
+            if (name && phone && /^[0-9]+$/.test(phone) && email) {
                 // Show the snackbar message
-                snackbar.innerHTML = '<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>';
+                snackbar.innerHTML = `<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>${translations[userLang].sending}</span></p>`;
                 snackbar.classList.add("active");
 
                 // Store data in Firebase Realtime Database
                 database.ref('users/' + name).set({
                     username: name,
-                    email: email
+					email: email,
+                    phone: phone
                 }).then(() => {
                     console.log("Data saved successfully!");
 
                     // Update the snackbar message to "Successfully sent" with a green checkmark
-                    snackbar.innerHTML = '<p><span class="icon text-middle fa fa-check icon-xxs" style="color: green;"></span><span>Successfully sent</span></p>';
+                    snackbar.innerHTML = `<p><span class="icon text-middle fa fa-check icon-xxs" style="color: green;"></span><span>${translations[userLang].successfullySent}</span></p>`;
 
                     // Remove the snackbar message after 5 seconds
                     setTimeout(() => {
                         snackbar.classList.remove("active");
-                    }, 3000);
+                    }, 5000);
                 }).catch((error) => {
                     console.error("Error saving data: ", error);
-                    alert("Error saving data: " + error);
 
-                    // Hide the snackbar message
-                    snackbar.classList.remove("active");
+                    // Update the snackbar message to show the error
+                    snackbar.innerHTML = `<p><span class="icon text-middle fa fa-times icon-xxs" style="color: red;"></span><span>${translations[userLang].errorSavingData}: ${error}</span></p>`;
+
+                    // Remove the snackbar message after 5 seconds
+                    setTimeout(() => {
+                        snackbar.classList.remove("active");
+                    }, 5000);
                 });
             } else {
-                console.error("Name and email are required.");
-                alert("Please enter your name and email.");
+                console.error("Name and valid phone number are required.");
+
+                // Show the snackbar message for missing details
+                snackbar.innerHTML = `<p><span class="icon text-middle fa fa-times icon-xxs" style="color: red;"></span><span>${translations[userLang].pleaseEnterDetails}</span></p>`;
+                snackbar.classList.add("active");
+
+                // Remove the snackbar message after 5 seconds
+                setTimeout(() => {
+                    snackbar.classList.remove("active");
+                }, 5000);
             }
         });
     } else {
         console.error("Form not found.");
-        alert("Form not found.");
+
+        // Show the snackbar message for form not found
+        snackbar.innerHTML = `<p><span class="icon text-middle fa fa-times icon-xxs" style="color: red;"></span><span>${translations[userLang].pleaseEnterDetails}</span></p>`;
+        snackbar.classList.add("active");
+
+        // Remove the snackbar message after 5 seconds
+        setTimeout(() => {
+            snackbar.classList.remove("active");
+        }, 5000);
     }
 });
+
+function validatePhoneNumber(input) {
+    let phoneError = document.getElementById("phone-error");
+    if (/^[0-9]*$/.test(input.value)) {
+        phoneError.style.display = "none";
+    } else {
+        phoneError.style.display = "block";
+    }
+}
