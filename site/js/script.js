@@ -689,7 +689,8 @@ const translations = {
 		sending: "Sending",
         successfullySent: "Successfully sent",
         errorSavingData: "Error saving data",
-        pleaseEnterDetails: "Please enter your details"
+        pleaseEnterDetails: "Please enter your details",
+		phone1: "Phone"
 	},
 	am:{
 		home_text: "Գլխավոր",
@@ -745,7 +746,9 @@ const translations = {
 		sending: "Ուղարկում",
         successfullySent: "Հաջողությամբ ուղարկված է",
         errorSavingData: "Տվյալների պահպանման սխալ",
-        pleaseEnterDetails: "Խնդրում ենք մուտքագրել ձեր տվյալները"
+        pleaseEnterDetails: "Խնդրում ենք մուտքագրել ձեր տվյալները",
+		phone1: "Հեռախոսահամար"
+
 
 	},
 	ru:{
@@ -802,7 +805,9 @@ const translations = {
 		sending: "Отправка",
         successfullySent: "Успешно отправлено",
         errorSavingData: "Ошибка сохранения данных",
-        pleaseEnterDetails: "Пожалуйста, введите ваши данные"
+        pleaseEnterDetails: "Пожалуйста, введите ваши данные",
+		phone1: "Телефон"
+
 
 	}
 }
@@ -858,6 +863,7 @@ let email1 = document.getElementById("email1");
 let salmast1 = document.getElementById("salmast1");
 let all_rights = document.getElementById("all_rights");
 let free = document.getElementById("free");
+let phone1 = document.getElementById("phone1");
 
 
 
@@ -913,6 +919,7 @@ const setLanguage = (language) => {
         salmast1.innerText = translations.en.salmast1;
         all_rights.innerText = translations.en.all_rights;
 		free.innerText = translations.en.free;
+		phone1.innerText = translations.en.phone1;
 		console.log("en");
  	}
 	else if (language == "am"){
@@ -966,6 +973,7 @@ email1.innerText = translations.am.email1;
 salmast1.innerText = translations.am.salmast1;
 all_rights.innerText = translations.am.all_rights;
 free.innerText = translations.am.free;
+phone1.innerText = translations.am.phone1;
 
 		console.log("am");
 	}
@@ -1020,6 +1028,7 @@ free.innerText = translations.am.free;
 		salmast1.innerText = translations.ru.salmast1;
 		all_rights.innerText = translations.ru.all_rights;
 		free.innerText = translations.ru.free;
+		phone1.innerText = translations.ru.phone1;
 
 		console.log("ru");
 }
