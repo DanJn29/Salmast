@@ -2,6 +2,8 @@
 
 Salmast is a responsive, single-page website for **Salmast Furniture**, an Armenian custom-furniture company. It presents the company, its services and completed projects, then lets prospective customers request a free design consultation.
 
+View the live website at [salmast.am](https://salmast.am).
+
 The site is intentionally simple: it is served directly from the `site/` directory and has no build step. The consultation form saves submitted name, email, and phone data to Firebase Realtime Database.
 
 ## Features
